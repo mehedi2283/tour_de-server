@@ -192,7 +192,7 @@ run().catch(err => console.error(err));
 
 
 app.get('/', (req, res) => {
-    res.send('tourDE server is running')
+    res.send('tourDE server is running.')
 })
 
 app.listen(port, ()=> {
