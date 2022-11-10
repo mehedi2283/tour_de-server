@@ -80,7 +80,7 @@ async function run(){
     });
 
     //review api
-    app.post('/reviews', async (req,res) =>{
+    app.post('/reviews', verifyJWT, async (req,res) =>{
         
         const review = req.body;
         const result = await reviewCollection.insertOne(review);
@@ -130,7 +130,7 @@ async function run(){
 });
 
 
-app.put('/update_review/:id', async (req,res) =>{
+app.put('/update_review/:id',verifyJWT, async (req,res) =>{
 
     const id = req.params.id
     const filter = {_id:ObjectId(id)}
@@ -159,7 +159,7 @@ app.put('/update_review/:id', async (req,res) =>{
 
 
 
-app.delete('/my_reviews/:id', async (req,res) =>{
+app.delete('/my_reviews/:id',verifyJWT, async (req,res) =>{
     const id = req.params.id
 
 
@@ -171,7 +171,7 @@ app.delete('/my_reviews/:id', async (req,res) =>{
 });
 
 
-app.post('/services', async (req,res) =>{
+app.post('/services',verifyJWT, async (req,res) =>{
     const service = req.body;
     const result = await serviceCollection.insertOne(service);
     res.send(result);
